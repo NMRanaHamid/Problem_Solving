@@ -14,6 +14,7 @@ typedef vector<vector<int> > vvii;
 typedef vector<vector<ll> > vvll;
 
 // rename macro of opearations using define
+#define fori(i,s,n) for(i=s; i<n; i++)
 #define nl "\n"
 #define dbg(x) cout<<#x<<" = "<<x<<ln
 #define mp make_pair
@@ -38,24 +39,54 @@ ll Inf = 1e18 ;
 
 void solve()
 {
-    ll n,k,s;
-    cin>>n>>k>>s;
-    ll sk = k*(k+1)/2;
-    if(sk>s)
-    {
-        cout<<"NO"<<nl;
-    }
-    else 
-    {
-
-        ll x = s-sk;
-        ll av = x/k, rm = x%k,cmp=k;
-        if(rm>0) cmp+=av+1;
-        else cmp+=av;
-        if(cmp>n) cout<<"NO"<<nl;
-        else cout<<"YES"<<nl;
-    }
-     
+     int n,m,i,j,k;
+     cin>>n>>m;
+     int ar[n][m],b[n][m];
+     fori(i,0,n)
+     {
+        fori(j,0,m)
+        {
+            ar[i][j]=1;
+        }
+     }
+     fori(i,0,n)
+     {
+        fori(j,0,m)
+        {
+            cin>>b[i][j];
+            if(b[i][j]==0)
+            {
+                fori(k,0,n) ar[k][j]=0;
+                fori(k,0,m) ar[i][k]=0;
+            }
+        }
+     }
+     fori(i,0,n)
+     {
+        fori(j,0,m)
+        {
+            if(b[i][j]==1)
+            {
+                int sum = 0;
+                fori(k,0,n) sum+=ar[k][j];
+                fori(k,0,m) sum+=ar[i][k];
+                if(sum==0)
+                {
+                    cout<<"NO"<<nl;
+                    return ;
+                }
+            }
+        }
+     }
+     cout<<"YES"<<nl;
+     fori(i,0,n)
+     {
+        fori(j,0,m)
+        {
+            cout<<ar[i][j]<<" ";
+        }
+        cout<<nl;
+     }
 }
 
 int32_t main()
@@ -63,7 +94,7 @@ int32_t main()
      fast_cin();
 
      int t=1;
-     cin >> t;
+    //  cin >> t;
      for(int it=1;it<=t;it++)
      {
         // cout << "Case #" << it << ": ";

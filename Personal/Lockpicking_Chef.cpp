@@ -14,6 +14,7 @@ typedef vector<vector<int> > vvii;
 typedef vector<vector<ll> > vvll;
 
 // rename macro of opearations using define
+#define fori(i,s,n) for(int i=s; i<n; i++)
 #define nl "\n"
 #define dbg(x) cout<<#x<<" = "<<x<<ln
 #define mp make_pair
@@ -38,24 +39,22 @@ ll Inf = 1e18 ;
 
 void solve()
 {
-    ll n,k,s;
-    cin>>n>>k>>s;
-    ll sk = k*(k+1)/2;
-    if(sk>s)
-    {
-        cout<<"NO"<<nl;
-    }
-    else 
-    {
-
-        ll x = s-sk;
-        ll av = x/k, rm = x%k,cmp=k;
-        if(rm>0) cmp+=av+1;
-        else cmp+=av;
-        if(cmp>n) cout<<"NO"<<nl;
-        else cout<<"YES"<<nl;
-    }
-     
+     int n,m,ans=INT_MAX,i;
+     cin>>n>>m;
+     string p,k;
+     char c ='9';
+     cin>>p>>k;
+     fori(i,0,n-m+1)
+     {
+        int x=0;
+        fori(j,0,m)
+        {
+             x+= min({abs(p[i+j]-k[j]),c+1-p[i+j]+k[j]-'0', c+1+p[i+j]-k[j]-'0'});
+            
+        }
+        ans= min(ans,x);
+     }
+     cout<<ans<<nl;
 }
 
 int32_t main()

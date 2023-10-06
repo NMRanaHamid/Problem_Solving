@@ -14,6 +14,7 @@ typedef vector<vector<int> > vvii;
 typedef vector<vector<ll> > vvll;
 
 // rename macro of opearations using define
+#define fori(i,s,n) for(i=s; i<n; i++)
 #define nl "\n"
 #define dbg(x) cout<<#x<<" = "<<x<<ln
 #define mp make_pair
@@ -38,24 +39,24 @@ ll Inf = 1e18 ;
 
 void solve()
 {
-    ll n,k,s;
-    cin>>n>>k>>s;
-    ll sk = k*(k+1)/2;
-    if(sk>s)
-    {
-        cout<<"NO"<<nl;
-    }
-    else 
-    {
-
-        ll x = s-sk;
-        ll av = x/k, rm = x%k,cmp=k;
-        if(rm>0) cmp+=av+1;
-        else cmp+=av;
-        if(cmp>n) cout<<"NO"<<nl;
-        else cout<<"YES"<<nl;
-    }
-     
+     int n;cin>>n;  int i,j;
+     map<int,vector<int>> mp;
+     fori(i,0,n)
+     {
+        int j,jj; cin>>j>>jj;
+        mp[i+1].push_back(j);
+        mp[i+1].push_back(jj);
+     }
+     int ans=0;
+     fori(i,0,n)
+     {
+        fori(j,0,n)
+        {
+            // cout<<mp[i+1].front()<<" "<<mp[j+1].back()<<endl
+            if(mp[i+1].front()==mp[j+1].back()) ans++;
+        }
+     }
+     cout<<ans<<nl;
 }
 
 int32_t main()
@@ -63,7 +64,7 @@ int32_t main()
      fast_cin();
 
      int t=1;
-     cin >> t;
+    //  cin >> t;
      for(int it=1;it<=t;it++)
      {
         // cout << "Case #" << it << ": ";

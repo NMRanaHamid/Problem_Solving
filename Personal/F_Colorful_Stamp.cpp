@@ -14,6 +14,7 @@ typedef vector<vector<int> > vvii;
 typedef vector<vector<ll> > vvll;
 
 // rename macro of opearations using define
+#define fori(i,s,n) for(i=s; i<n; i++)
 #define nl "\n"
 #define dbg(x) cout<<#x<<" = "<<x<<ln
 #define mp make_pair
@@ -38,24 +39,49 @@ ll Inf = 1e18 ;
 
 void solve()
 {
-    ll n,k,s;
-    cin>>n>>k>>s;
-    ll sk = k*(k+1)/2;
-    if(sk>s)
-    {
-        cout<<"NO"<<nl;
-    }
-    else 
-    {
+     int n;
+     cin>>n;
+     string s;
+     cin>>s;
+     int c=0,i;
+    //  fori(i,0,n) if(s[i]=='W')c++;
+    //  if(c==0 or c==n) 
+    //  {
+    //     cout<<"YES"<<nl;
+    //     return ;
+    //  }
+    //  fori(i,0,n-2)
+    //  {
+    //     if(s[i]=='W' and s[i+2]=='W')
+    //     {
+    //         cout<<"NO"<<nl;
+    //         return ;
+    //     }
+    //  }
+     int a=0,b=0;
+     fori(i,0,n)
+     {
+        if(s[i]=='W')
+        {
+            if((a==0 and b>0) or (a>0 and b==0))
+            {
+                cout<<"NO"<<nl;
+                return ;
+            }
+            a=0;
+            b=0;
+        }
+        else 
+        {
+            if(s[i]=='R') a++;
+            else b++;
+        }
+     }
+    //  cout<<a<<" "<<b<<endl;
+     if((a==0 and b>0) or (a>0 and b==0)) cout<<"NO"<<nl;
+     else cout<<"YES"<<nl;
 
-        ll x = s-sk;
-        ll av = x/k, rm = x%k,cmp=k;
-        if(rm>0) cmp+=av+1;
-        else cmp+=av;
-        if(cmp>n) cout<<"NO"<<nl;
-        else cout<<"YES"<<nl;
-    }
-     
+
 }
 
 int32_t main()
